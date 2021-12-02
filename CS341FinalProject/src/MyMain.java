@@ -10,10 +10,7 @@ public class MyMain {
 		Type_A_GameObject A = new Type_A_GameObject(400, 200);
 		A.setVelocity(15);
 		canvas.addGameObject(A);
-
-	
-		/*
-		 * 
+		
 		Type_B_GameObject B = new Type_B_GameObject(400, 300);
 		B.setVelocity(1);
 		canvas.addGameObject(B);
@@ -28,10 +25,6 @@ public class MyMain {
 		D.setVelocity(15);
 		canvas.addKeyListener(D);
 		canvas.addGameObject(D);
-		*/
-		
-
-	
 		
 	}
 }

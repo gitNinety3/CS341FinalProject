@@ -57,7 +57,6 @@ public class Canvas extends JComponent implements ActionListener, KeyListener {
 	public synchronized void actionPerformed(ActionEvent e) {
 		for (GameObject gameObject : gameObjectList) {
 			gameObject.move(this);
-			//gameObject.move2(this);
 			gameObject.setImage();
 		}
 		repaint();

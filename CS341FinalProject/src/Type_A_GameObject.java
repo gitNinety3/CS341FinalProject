@@ -19,23 +19,23 @@ public class Type_A_GameObject extends GameObject {
 		Icon icon = getCurrentImage();
 		
 		int iconHeight = icon.getIconHeight();
-		//int iconWidth = icon.getIconWidth();
 	
 		// HEIGHT
-		if (getDirection() == Direction.UP) {
-			setX(getX() + getVelocity());
-			if (getX() + iconHeight > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getHeight() - iconHeight));
-				setDirection(Direction.DOWN);
+		if (getDirection() == Direction.DOWN) {
+			setY(getY() + getVelocity());
+			if (getY() + iconHeight > c.getSize().getHeight()) {
+				setY((int) (c.getSize().getHeight() - iconHeight));
+				setDirection(Direction.UP);
 			}
 		} 
 		else {
-			setX(getX() - getVelocity());
-			if (getX() < 0) {
-				setX(0);
-				setDirection(Direction.UP);
+			setY(getY() - getVelocity());
+			if (getY() < 0) {
+				setY(0);
+				setDirection(Direction.DOWN);
 			}
 		}
+
 	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
