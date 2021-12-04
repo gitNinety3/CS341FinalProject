@@ -23,8 +23,8 @@ public class Type_A_GameObject extends GameObject {
 		// HEIGHT
 		if (getDirection() == Direction.DOWN) {
 			setY(getY() + getVelocity());
-			if (getY() + iconHeight > c.getSize().getHeight()) {
-				setY((int) (c.getSize().getHeight() - iconHeight));
+			if (getY() + iconHeight > c.getSize().getWidth()) {
+				setY((int) (c.getSize().getWidth() - iconHeight));
 				setDirection(Direction.UP);
 			}
 		} 

@@ -6,15 +6,22 @@ public class MyMain {
 		// TASK 1: CREATE A CANVAS FOR ANIMATION
 		Canvas canvas = new Canvas();
 		canvas.requestFocus();
-		
+		/*
 		Type_A_GameObject A = new Type_A_GameObject(400, 200);
 		A.setVelocity(10);
 		canvas.addGameObject(A);
-		
-		Type_B_GameObject B = new Type_B_GameObject(400, 300);
-		B.setVelocity(2);
+		*/
+	
+		Type_B_GameObject_Implement B = new Type_B_GameObject_Implement(100, 100);
+		B.setVelocity(15);
 		canvas.addGameObject(B);
 		
+		
+		/*
+		Type_B_GameObject_Adapter B = new Type_B_GameObject_Adapter(400, 300);
+		//B.setVelocity(2);
+		canvas.addgetMove(B);
+	
 		Type_C_GameObject C = new Type_C_GameObject(400, 400);
 		C.setVelocity(10);
 		canvas.addGameObject(C);
@@ -24,6 +31,6 @@ public class MyMain {
 		D.setVelocity(10);
 		canvas.addKeyListener(D);
 		canvas.addGameObject(D);
-		
+		*/
 	}
 }
