@@ -7,8 +7,7 @@ public class Type_B_GameObject extends GameObject {
 
 	public Type_B_GameObject(int x, int y) {
 		super(x, y);
-		setVelocity(3);
-		setDirection(Direction.RIGHT);
+		setDirection(Direction.LEFT);
 
 		imageList = new LinkedList<Icon>();
 		imageList.add(new ImageIcon("src/images/Type_B_Right.png"));
@@ -21,17 +20,15 @@ public class Type_B_GameObject extends GameObject {
 	public void move(Canvas c) {
 		Icon icon = getCurrentImage();
 
-		//int iconWidth = icon.getIconWidth();
+		int iconWidth = icon.getIconWidth();
 		int iconHeight = icon.getIconHeight();
-		
-		/*
-		// WIDTH 
+	
 		if (getDirection() == Direction.LEFT) {
 			setX(getX() + getVelocity());
 			if (getX() + iconWidth > c.getSize().getWidth()) {
 				setX((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.UP);
-			} 
+				setDirection(Direction.RIGHT);
+			}
 		} 
 		else {
 			setX(getX() - getVelocity());
@@ -40,23 +37,24 @@ public class Type_B_GameObject extends GameObject {
 				setDirection(Direction.LEFT);
 			}
 		}
-
-		*/
-		// HEIGHT
+		
+		
 		if (getDirection() == Direction.UP) {
-			setX(getX() + getVelocity());
-			if (getX() + iconHeight > c.getSize().getHeight()) {
-				setX((int) (c.getSize().getHeight() - iconHeight));
+			setY(getY() + getVelocity());
+			if (getY() + iconHeight > c.getSize().getWidth()) {
+				setY((int) (c.getSize().getWidth() - iconHeight));
 				setDirection(Direction.DOWN);
 			}
 		} 
 		else {
-			setX(getX() - getVelocity());
-			if (getX() < 0) {
-				setX(0);
+			setY(getY() - getVelocity());
+			if (getY() < 0) {
+				setY(0);
 				setDirection(Direction.UP);
 			}
 		}
+		
+		
 	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
