@@ -12,9 +12,10 @@ public class Type_B_GameObject_Implement extends GameObject {
 
 		imageList = new LinkedList<Icon>();
 		imageList.add(new ImageIcon("src/images/Type_B_Right.png"));
+		imageList.add(new ImageIcon("src/images/Type_B_Left.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Up.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Down.png"));
-		imageList.add(new ImageIcon("src/images/Type_B_Left.png"));
+		
 
 	}
 
@@ -38,20 +39,23 @@ public class Type_B_GameObject_Implement extends GameObject {
 				setDirection(Direction.LEFT);
 			}
 		}
+		/*
 		else if (getDirection() == Direction.LEFT) {
 			setX(getX() + getVelocity());
-			if (getX() + iconHeight > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getWidth() - iconWidth));
+			if (getX() + iconWidth > c.getSize().getWidth()) {
+				setX((int) (c.getSize().getWidth() - iconHeight));
 				setDirection(Direction.UP);
 			}
 		}
+		
 		else {
 			setY(getY() - getVelocity());
 			if (getY() < 0) {
-				setX(0);
+				setY(0);
 				setDirection(Direction.RIGHT);
 			}
 		}
+		*/
 	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
@@ -63,13 +67,13 @@ public class Type_B_GameObject_Implement extends GameObject {
 		case Direction.RIGHT:
 			currentImage = 0;
 			break;
-		case Direction.UP:
+		case Direction.LEFT:
 			currentImage = 1;
 			break;
-		case Direction.DOWN:
+		case Direction.UP:
 			currentImage = 2;
 			break;
-		case Direction.LEFT:
+		case Direction.DOWN:
 			currentImage = 3;
 			break;
 		}
