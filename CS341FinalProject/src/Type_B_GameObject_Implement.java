@@ -17,7 +17,7 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 		setDirection(Direction.RIGHT);
 
 		imageList = new LinkedList<Icon>();
-		imageList.add(new ImageIcon("src/images/ballRed.png"));
+		//imageList.add(new ImageIcon("src/images/ballRed.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Up.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Left.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Down.png"));
@@ -36,51 +36,33 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 	
 		if (getDirection() == Direction.RIGHT) {
 			setX(getX() + getVelocity());
-			if (getX() + iconHeight > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getWidth() - iconHeight));
+			if (getX() + iconWidth > c.getSize().getWidth()) {
+				setX((int) (c.getSize().getWidth() - iconWidth));
 				setDirection(Direction.DOWN);
 			} 
-		}
+		} 
 		else if (getDirection() == Direction.DOWN) {
 			setY(getY() + getVelocity());
 			if (getY() + iconWidth > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconHeight)); 
-				setDirection(Direction.LEFT);	
+				setY((int) (c.getSize().getWidth() - iconWidth));
+				setDirection(Direction.LEFT);
 			} 
-		}
-		else if (getDirection() == Direction.UP) {
-			setY(getY() + getVelocity());
-			if (getY() + iconWidth > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconHeight)); 
-				setDirection(Direction.RIGHT);	
-			} 
-		}
-		/*
+		} 
 		else if (getDirection() == Direction.LEFT) {
 			setX(getX() + getVelocity());
 			if (getX() + iconHeight > c.getSize().getWidth()) {
 				setX((int) (c.getSize().getWidth() - iconHeight));
 				setDirection(Direction.UP);
-			}
-		}
-		
-		/*
-		else if (getDirection() == Direction.UP) {
-			setY(getY() + getVelocity());
-			if (getY() + iconWidth > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconWidth)); 
-				setDirection(Direction.RIGHT);	
 			} 
 		}
-		*/
 		else {
 			setX(getX() - getVelocity());
 			if (getX() < 0) {
 				setX(0);
-				setDirection(Direction.UP);
-			}
+				setDirection(Direction.LEFT);
+			}	
 		}
-
+		
 		/*
 		switch (getDirection()) {
 		case Direction.UP:
@@ -119,19 +101,18 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 	public void setImage() {
 		switch (getDirection()) {
 		case Direction.NONE:
-			currentImage = 0;
 			break;
 		case Direction.UP:
-			currentImage = 1;
+			currentImage = 0;
 			break;
 		case Direction.LEFT:
-			currentImage = 2;
+			currentImage = 1;
 			break;
 		case Direction.DOWN:
-			currentImage = 3;
+			currentImage = 2;
 			break;
 		case Direction.RIGHT:
-			currentImage = 4;
+			currentImage = 3;
 			break;
 		}
 	}
