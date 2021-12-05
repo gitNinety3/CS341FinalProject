@@ -7,7 +7,6 @@ public class Type_C_GameObject extends GameObject {
 	
 	public Type_C_GameObject(int x, int y) {
 		super(x, y);
-		setVelocity(3);
 		setDirection(Direction.LEFT);
 
 		imageList = new LinkedList<Icon>();
@@ -17,8 +16,8 @@ public class Type_C_GameObject extends GameObject {
 	}
 
 	public void move(Canvas c) {
+		
 		Icon icon = getCurrentImage();
-
 		int iconWidth = icon.getIconWidth();
 		
 		// WIDTH 

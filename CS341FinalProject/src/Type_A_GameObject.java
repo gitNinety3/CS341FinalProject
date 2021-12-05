@@ -16,8 +16,8 @@ public class Type_A_GameObject extends GameObject {
 	}
 
 	public void move(Canvas c) {
-		Icon icon = getCurrentImage();
 		
+		Icon icon = getCurrentImage();
 		int iconHeight = icon.getIconHeight();
 	
 		// HEIGHT
@@ -35,7 +35,6 @@ public class Type_A_GameObject extends GameObject {
 				setDirection(Direction.DOWN);
 			}
 		}
-
 	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
