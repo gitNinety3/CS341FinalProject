@@ -57,6 +57,10 @@ public class Type_D_GameObject extends GameObject implements KeyListener {
 		}
 
 	}
+	
+	public void automatic(Canvas c) {
+		
+	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
 	// USED FOR ANIMATION
@@ -80,6 +84,7 @@ public class Type_D_GameObject extends GameObject implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
+		
 	}
 
 	public void keyReleased(KeyEvent e) {

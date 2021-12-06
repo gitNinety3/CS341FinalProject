@@ -17,7 +17,7 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 		setDirection(Direction.RIGHT);
 
 		imageList = new LinkedList<Icon>();
-		//imageList.add(new ImageIcon("src/images/ballRed.png"));
+		imageList.add(new ImageIcon("src/images/ballRed.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Up.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Left.png"));
 		imageList.add(new ImageIcon("src/images/Type_B_Down.png"));
@@ -25,6 +25,7 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 		
 	}
 
+	// THIS METHOD ALLOWS THE OBJECT TO MOVE ONLY WITH USER CONTROLL
 	public void move(Canvas c) {
 		
 		Icon icon = getCurrentImage();
@@ -40,25 +41,34 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 				setX((int) (c.getSize().getWidth() - iconWidth));
 				setDirection(Direction.DOWN);
 			} 
-		} 
+		}
 		else if (getDirection() == Direction.DOWN) {
 			setY(getY() + getVelocity());
 			if (getY() + iconWidth > c.getSize().getWidth()) {
 				setY((int) (c.getSize().getWidth() - iconWidth));
 				setDirection(Direction.LEFT);
 			} 
-		} 
+		}
 		else if (getDirection() == Direction.LEFT) {
 			setX(getX() + getVelocity());
-			if (getX() + iconHeight > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getWidth() - iconHeight));
+			if (getX() + iconWidth > c.getSize().getWidth()) {
+				setX((int) (c.getSize().getWidth() - iconWidth));
 				setDirection(Direction.UP);
 			} 
 		}
+		/*
+		else if (getDirection() == Direction.UP) {
+			setY(getY() + getVelocity());
+			if (getY() + iconWidth > c.getSize().getWidth()) {
+				setY((int) (c.getSize().getWidth() - iconWidth));
+				setDirection(Direction.RIGHT);
+			} 
+		}
+		*/
 		else {
-			setX(getX() - getVelocity());
-			if (getX() < 0) {
-				setX(0);
+			setY(getY() - getVelocity());
+			if (getY() < 0) {
+				setY(0);
 				setDirection(Direction.LEFT);
 			}	
 		}
@@ -95,6 +105,12 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 		*/
 		
 	}
+	
+	// THIS ALLOWS THE OBJECT TO MOVE AUTOMATICALLY
+	public void automatic(Canvas c) {
+		
+	}
+
 
 	// SPECIFY THE IMAGE TO DISPLAY
 	// USED FOR ANIMATION
@@ -103,16 +119,16 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 		case Direction.NONE:
 			break;
 		case Direction.UP:
-			currentImage = 0;
-			break;
-		case Direction.LEFT:
 			currentImage = 1;
 			break;
-		case Direction.DOWN:
+		case Direction.LEFT:
 			currentImage = 2;
 			break;
-		case Direction.RIGHT:
+		case Direction.DOWN:
 			currentImage = 3;
+			break;
+		case Direction.RIGHT:
+			currentImage = 4;
 			break;
 		}
 	}

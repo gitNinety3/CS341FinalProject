@@ -13,7 +13,7 @@ public class Ball extends GameObject {
 	}
 
 	// IMPLEMENT ABSTRACT METHOD MOVE
-	public void move(Canvas c) {
+	public void automatic(Canvas c) {
 		// MOVE THE BALL AND CHECK FOR COLLISION
 		if (getDirection() == Direction.LEFT) {
 			setX(getX() + getVelocity());
@@ -33,6 +33,12 @@ public class Ball extends GameObject {
 
 	@Override
 	public void setImage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void move(Canvas c) {
 		// TODO Auto-generated method stub
 		
 	}

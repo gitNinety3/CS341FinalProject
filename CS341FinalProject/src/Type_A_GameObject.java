@@ -1,12 +1,14 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class Type_A_GameObject extends GameObject {
-	
+public class Type_A_GameObject extends GameObject implements KeyListener {
+
 	public Type_A_GameObject(int x, int y) {
-		super(x, y); 
+		super(x, y);
 		setDirection(Direction.UP);
 
 		imageList = new LinkedList<Icon>();
@@ -16,10 +18,36 @@ public class Type_A_GameObject extends GameObject {
 	}
 
 	public void move(Canvas c) {
+		Icon icon = getCurrentImage();
+
+		int iconHeight = icon.getIconHeight();
+		int canvasHeight = (int) c.getSize().getHeight();
+
+		// MOVE BLUE GAME OBJECT
+		switch (getDirection()) {
+		case Direction.UP:
+			setY(getY() - getVelocity());
+			if (getY() < 0) {
+				setY(0);
+			}
+			break;
+		case Direction.DOWN:
+			setY(getY() + getVelocity());
+			if (getY() + iconHeight > canvasHeight) {
+				setY((int) (canvasHeight - iconHeight));
+			}
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	public void automatic(Canvas c) {
 		
 		Icon icon = getCurrentImage();
 		int iconHeight = icon.getIconHeight();
-	
+
 		// HEIGHT
 		if (getDirection() == Direction.DOWN) {
 			setY(getY() + getVelocity());
@@ -27,8 +55,7 @@ public class Type_A_GameObject extends GameObject {
 				setY((int) (c.getSize().getWidth() - iconHeight));
 				setDirection(Direction.UP);
 			}
-		} 
-		else {
+		} else {
 			setY(getY() - getVelocity());
 			if (getY() < 0) {
 				setY(0);
@@ -51,6 +78,30 @@ public class Type_A_GameObject extends GameObject {
 			break;
 		}
 	}
+	
+	public void keyTyped(KeyEvent e) {
+		
+	}
 
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() != KeyEvent.VK_TAB) {
+			setDirection(Direction.NONE);
+		}
+	}
+
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			setDirection(Direction.UP);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			setDirection(Direction.DOWN);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			setDirection(Direction.LEFT);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			setDirection(Direction.RIGHT);
+		}
+	}
 
 }
