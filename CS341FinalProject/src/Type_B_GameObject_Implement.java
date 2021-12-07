@@ -101,7 +101,6 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 		}
 	}
 
-
 	// SPECIFY THE IMAGE TO DISPLAY
 	// USED FOR ANIMATION
 	public void setImage() {
