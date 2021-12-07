@@ -18,6 +18,7 @@ public class Type_A_GameObject extends GameObject implements KeyListener {
 	}
 
 	public void move(Canvas c) {
+		/*
 		Icon icon = getCurrentImage();
 
 		int iconHeight = icon.getIconHeight();
@@ -40,6 +41,7 @@ public class Type_A_GameObject extends GameObject implements KeyListener {
 		default:
 			break;
 		}
+		*/
 
 	}
 

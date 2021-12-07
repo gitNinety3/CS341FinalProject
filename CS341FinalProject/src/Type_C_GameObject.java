@@ -14,10 +14,12 @@ public class Type_C_GameObject extends GameObject implements KeyListener {
 		imageList = new LinkedList<Icon>();
 		imageList.add(new ImageIcon("src/images/Type_C_Right.png"));
 		imageList.add(new ImageIcon("src/images/Type_C_Left.png"));
+		imageList.add(new ImageIcon("src/images/Type_B_Up.png"));
 
 	}
 
 	public void move(Canvas c) {
+		/*
 		Icon icon = getCurrentImage();
 		
 		int iconWidth = icon.getIconWidth();
@@ -40,7 +42,7 @@ public class Type_C_GameObject extends GameObject implements KeyListener {
 		default:
 			break;
 		}
-
+		*/
 	}
 
 	public void automatic(Canvas c) {
@@ -54,7 +56,8 @@ public class Type_C_GameObject extends GameObject implements KeyListener {
 				setX((int) (c.getSize().getWidth() - iconWidth));
 				setDirection(Direction.RIGHT);
 			}
-		} else {
+		} 
+		else {
 			setX(getX() - getVelocity());
 			if (getX() < 0) {
 				setX(0);

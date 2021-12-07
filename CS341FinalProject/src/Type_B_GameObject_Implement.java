@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 public class Type_B_GameObject_Implement extends GameObject implements KeyListener {
 	
 	// DATA MEMBERS
-	private Type_A_GameObject typeA;
-	private Type_C_GameObject typeC;
+	//private Type_A_GameObject typeA;
+	//private Type_C_GameObject typeC;
 
 	// CONSTRUCTOR
 	public Type_B_GameObject_Implement(int x, int y) {
@@ -27,51 +27,8 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 
 	// THIS METHOD ALLOWS THE OBJECT TO MOVE ONLY WITH USER CONTROLL
 	public void move(Canvas c) {
-		
-		Icon icon = getCurrentImage();
-		
-		int iconWidth = icon.getIconWidth();
-		int iconHeight = icon.getIconHeight();
 		//int canvasHeight = (int) c.getSize().getHeight();
 		//int canvasWidth = (int) c.getSize().getWidth();
-	
-		if (getDirection() == Direction.RIGHT) {
-			setX(getX() + getVelocity());
-			if (getX() + iconWidth > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.DOWN);
-			} 
-		}
-		else if (getDirection() == Direction.DOWN) {
-			setY(getY() + getVelocity());
-			if (getY() + iconWidth > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.LEFT);
-			} 
-		}
-		else if (getDirection() == Direction.LEFT) {
-			setX(getX() + getVelocity());
-			if (getX() + iconWidth > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.UP);
-			} 
-		}
-		/*
-		else if (getDirection() == Direction.UP) {
-			setY(getY() + getVelocity());
-			if (getY() + iconWidth > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.RIGHT);
-			} 
-		}
-		*/
-		else {
-			setY(getY() - getVelocity());
-			if (getY() < 0) {
-				setY(0);
-				setDirection(Direction.LEFT);
-			}	
-		}
 		
 		/*
 		switch (getDirection()) {
@@ -109,6 +66,39 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 	// THIS ALLOWS THE OBJECT TO MOVE AUTOMATICALLY
 	public void automatic(Canvas c) {
 		
+		Icon icon = getCurrentImage();
+		
+		int iconWidth = icon.getIconWidth();
+		int iconHeight = icon.getIconHeight();
+		
+		if (getDirection() == Direction.RIGHT) {
+			setX(getX() + getVelocity());
+			if (getX() + iconWidth > c.getSize().getWidth()) {
+				setX((int) (c.getSize().getWidth() - iconWidth));
+				setDirection(Direction.DOWN);
+			}
+		}
+		else if (getDirection() == Direction.DOWN) {
+			setY(getY() + getVelocity());
+			if (getY() + iconWidth > c.getSize().getWidth()) {
+				setY((int) (c.getSize().getWidth() - iconWidth));
+				setDirection(Direction.LEFT);
+			} 
+		}
+		else if (getDirection() == Direction.LEFT) {
+			setX(getX() - getVelocity());
+			if (getX() < 0) {
+				setX(0);
+				setDirection(Direction.UP);
+			}
+		}
+		else {
+			setY(getY() - getVelocity());
+			if (getY() < 0) {
+				setY(0);
+				setDirection(Direction.RIGHT);
+			}
+		}
 	}
 
 

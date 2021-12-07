@@ -59,6 +59,8 @@ public class Type_D_GameObject extends GameObject implements KeyListener {
 	}
 	
 	public void automatic(Canvas c) {
+		// DOES NOTHING BUT ALLOW THE ABSTRACT
+		// METHOD TO BE APPLIED TO MAKE APP HAPPY
 		
 	}
 
