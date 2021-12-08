@@ -27,41 +27,41 @@ public class Type_D_GameObject extends GameObject implements KeyListener {
 		int canvasWidth = (int) c.getSize().getWidth();
 
 		// MOVE BLUE GAME OBJECT
-		switch (getDirection()) {
-		case Direction.UP:
-			setY(getY() - getVelocity());
-			if (getY() < 0) {
-				setY(0);
+		if (getHighlighted()) {
+			switch (getDirection()) {
+			case Direction.UP:
+				setY(getY() - getVelocity());
+				if (getY() < 0) {
+					setY(0);
+					setDirection(Direction.DOWN);
+				}
+				break;
+			case Direction.DOWN:
+				setY(getY() + getVelocity());
+				if (getY() + iconHeight > canvasHeight) {
+					setY((int) (canvasHeight - iconHeight));
+					setDirection(Direction.UP);
+				}
+				break;
+			case Direction.LEFT:
+				setX(getX() + getVelocity());
+				if (getX() + iconWidth > canvasWidth) {
+					setX((int) (canvasWidth - iconWidth));
+					setDirection(Direction.RIGHT);
+				}
+				break;
+			case Direction.RIGHT:
+				setX(getX() - getVelocity());
+				if (getX() < 0) {
+					setX(0);
+					setDirection(Direction.LEFT);
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		case Direction.DOWN:
-			setY(getY() + getVelocity());
-			if (getY() + iconHeight > canvasHeight) {
-				setY((int) (canvasHeight - iconHeight));
-			}
-			break;
-		case Direction.LEFT:
-			setX(getX() + getVelocity());
-			if (getX() + iconWidth > canvasWidth) {
-				setX((int) (canvasWidth - iconWidth));
-			}
-			break;
-		case Direction.RIGHT:
-			setX(getX() - getVelocity());
-			if (getX() < 0) {
-				setX(0);
-			}
-			break;
-		default:
-			break;
 		}
 
-	}
-	
-	public void automatic(Canvas c) {
-		// DOES NOTHING BUT ALLOW THE ABSTRACT
-		// METHOD TO BE APPLIED TO MAKE APP HAPPY
-		
 	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
@@ -90,23 +90,30 @@ public class Type_D_GameObject extends GameObject implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() != KeyEvent.VK_TAB) {
-			setDirection(Direction.NONE);
+		if (getHighlighted()) {
+			if (e.getKeyCode() != KeyEvent.VK_TAB) {
+				setDirection(Direction.NONE);
+			}
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			setDirection(Direction.UP);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			setDirection(Direction.DOWN);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			setDirection(Direction.LEFT);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			setDirection(Direction.RIGHT);
+		if (getHighlighted()) {
+			if (e.getKeyCode() == KeyEvent.VK_TAB) {
+				setDirection(Direction.NONE);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				setDirection(Direction.UP);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				setDirection(Direction.DOWN);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				setDirection(Direction.RIGHT);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				setDirection(Direction.RIGHT);
+			}
 		}
 	}
 

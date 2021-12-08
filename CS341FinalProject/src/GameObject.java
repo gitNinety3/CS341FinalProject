@@ -11,6 +11,7 @@ public abstract class GameObject {
 	private int y;
 	private int velocity;
 	private int direction;
+	private boolean isHighlighted;
 
 	// EACH GAME OBJECT CAN HAVE A COLLECTION OF IMAGES
 	protected Icon myImage;
@@ -20,20 +21,26 @@ public abstract class GameObject {
 	public GameObject(int x, int y) {
 		this.x = x;
 		this.y = y;
-		velocity = 0;
+		velocity = 1;
 		currentImage = 0;
+		isHighlighted = false;
+		
 	}
 
 	public void draw(Component c, Graphics g) {
 		imageList.get(currentImage).paintIcon(c, g, x, y);
+		
 	}
 
 	// ********************************************
 
 	// ABSTRACT METHODS: MOVEMENT OF THE GAME OBJECT
 	public abstract void move(Canvas c);
-	public abstract void automatic(Canvas c);
 	public abstract void setImage();
+	
+	// WAS GONNA HAVE TWO METHODS FOR HIGHLIGHTED
+	// AND FO AUTOMATED BUT IT WAS POINTLESS
+	//public abstract void automatic(Canvas c);
 
 	// ********************************************
 
@@ -74,5 +81,14 @@ public abstract class GameObject {
 		return imageList.get(currentImage);
 
 	}
+
+	public Boolean getHighlighted() {
+		return isHighlighted;
+	}
+
+	public void setHighlighted(Boolean state) {
+		isHighlighted = state;
+	}
+	
 
 }

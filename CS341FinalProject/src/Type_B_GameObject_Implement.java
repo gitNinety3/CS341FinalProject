@@ -5,16 +5,14 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class Type_B_GameObject_Implement extends GameObject implements KeyListener {
+public class Type_B_GameObject_Implement extends GameObject implements Type_B_GameObject_Adapter, KeyListener {
 	
-	// DATA MEMBERS
-	//private Type_A_GameObject typeA;
-	//private Type_C_GameObject typeC;
+	GameObject gameObject; 
 
 	// CONSTRUCTOR
 	public Type_B_GameObject_Implement(int x, int y) {
 		super(x, y);
-		setDirection(Direction.RIGHT);
+		setDirection(Direction.NONE);
 
 		imageList = new LinkedList<Icon>();
 		imageList.add(new ImageIcon("src/images/ballRed.png"));
@@ -27,79 +25,80 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 
 	// THIS METHOD ALLOWS THE OBJECT TO MOVE ONLY WITH USER CONTROLL
 	public void move(Canvas c) {
-		//int canvasHeight = (int) c.getSize().getHeight();
-		//int canvasWidth = (int) c.getSize().getWidth();
-		
-		/*
-		switch (getDirection()) {
-		case Direction.UP:
-			setY(getY() - getVelocity());
-			if (getY() < 0) {
-				setY(0);
-			}
-			break;
-		case Direction.DOWN:
-			setY(getY() + getVelocity());
-			if (getY() + iconHeight > canvasHeight) {
-				setY((int) (canvasHeight - iconHeight));
-			}
-			break;
-		case Direction.LEFT:
-			setX(getX() + getVelocity());
-			if (getX() + iconWidth > canvasWidth) {
-				setX((int) (canvasWidth - iconWidth));
-			}
-			break;
-		case Direction.RIGHT:
-			setX(getX() - getVelocity());
-			if (getX() < 0) {
-				setX(0);
-			}
-			break;
-		default:
-			break;
-		}
-		*/
-		
-	}
-	
-	// THIS ALLOWS THE OBJECT TO MOVE AUTOMATICALLY
-	public void automatic(Canvas c) {
 		
 		Icon icon = getCurrentImage();
 		
 		int iconWidth = icon.getIconWidth();
 		int iconHeight = icon.getIconHeight();
+		int canvasHeight = (int) c.getSize().getHeight();
+		int canvasWidth = (int) c.getSize().getWidth();
 		
-		if (getDirection() == Direction.RIGHT) {
-			setX(getX() + getVelocity());
-			if (getX() + iconWidth > c.getSize().getWidth()) {
-				setX((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.DOWN);
+		if (getHighlighted()) {
+			switch (getDirection()) {
+			case Direction.DOWN:
+				setY(getY() + getVelocity());
+				if (getY() + iconHeight > canvasHeight) {
+					setY((int) (canvasHeight - iconHeight));
+					setDirection(Direction.UP);
+				}
+				break;
+			case Direction.UP:
+				setY(getY() - getVelocity());
+				if (getY() < 0) {
+					setY(0);
+					setDirection(Direction.DOWN);
+				}
+				break;
+			case Direction.LEFT:
+				setX(getX() + getVelocity());
+				if (getX() + iconWidth > canvasWidth) {
+					setX((int) (canvasWidth - iconWidth));
+					setDirection(Direction.RIGHT);
+				}
+				break;
+			case Direction.RIGHT:
+				setX(getX() - getVelocity());
+				if (getX() < 0) {
+					setX(0);
+					setDirection(Direction.LEFT);
+				}
+				break;
+			default:
+				break;
 			}
 		}
-		else if (getDirection() == Direction.DOWN) {
-			setY(getY() + getVelocity());
-			if (getY() + iconWidth > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconWidth));
-				setDirection(Direction.LEFT);
-			} 
-		}
-		else if (getDirection() == Direction.LEFT) {
-			setX(getX() - getVelocity());
-			if (getX() < 0) {
-				setX(0);
-				setDirection(Direction.UP);
+			else {
+				if (getDirection() == Direction.RIGHT) {
+					setX(getX() + getVelocity());
+					if (getX() + iconWidth > c.getSize().getWidth()) {
+						setX((int) (c.getSize().getWidth() - iconWidth));
+						setDirection(Direction.DOWN);
+					}
+				}
+				else if (getDirection() == Direction.DOWN) {
+					setY(getY() + getVelocity());
+					if (getY() + iconHeight > c.getSize().getWidth()) {
+						setY((int) (c.getSize().getWidth() - iconHeight));
+						setDirection(Direction.LEFT);
+					} 
+				}
+				else if (getDirection() == Direction.LEFT) {
+					setX(getX() - getVelocity());
+					if (getX() < 0) {
+						setX(0);
+						setDirection(Direction.UP);
+					}
+				}
+				else {
+					setY(getY() - getVelocity());
+					if (getY() < 0) {
+						setY(0);
+						setDirection(Direction.RIGHT);
+					}
+				}
 			}
+
 		}
-		else {
-			setY(getY() - getVelocity());
-			if (getY() < 0) {
-				setY(0);
-				setDirection(Direction.RIGHT);
-			}
-		}
-	}
 
 	// SPECIFY THE IMAGE TO DISPLAY
 	// USED FOR ANIMATION
@@ -123,26 +122,34 @@ public class Type_B_GameObject_Implement extends GameObject implements KeyListen
 	}
 	
 	public void keyTyped(KeyEvent e) {
+		
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() != KeyEvent.VK_TAB) {
-			setDirection(Direction.NONE);
+		if (getHighlighted()) {
+			if (e.getKeyCode() != KeyEvent.VK_TAB) {
+				setDirection(Direction.NONE);
+			}
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			setDirection(Direction.UP);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			setDirection(Direction.DOWN);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			setDirection(Direction.LEFT);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			setDirection(Direction.RIGHT);
+		if (getHighlighted()) {
+			if (e.getKeyCode() == KeyEvent.VK_TAB) {
+				setDirection(Direction.NONE);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				setDirection(Direction.UP);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				setDirection(Direction.DOWN);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				setDirection(Direction.LEFT);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				setDirection(Direction.RIGHT);
+			}
 		}
 	}
 

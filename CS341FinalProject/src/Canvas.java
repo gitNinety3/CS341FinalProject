@@ -57,7 +57,7 @@ public class Canvas extends JComponent implements ActionListener, KeyListener {
 	public synchronized void actionPerformed(ActionEvent e) {
 		for (GameObject gameObject : gameObjectList) {
 			gameObject.move(this);
-			gameObject.automatic(this);
+			//gameObject.automatic(this);
 			gameObject.setImage();
 		}
 		repaint();
@@ -82,8 +82,16 @@ public class Canvas extends JComponent implements ActionListener, KeyListener {
 	        highlighted = 0;
 	      }
 	    }
+	    
+	    // FOR WHEN OBJECT IS HIGHLIGHTED
+	    for (GameObject gameObject: gameObjectList) {
+	    	gameObject.setHighlighted(false);
+	    }
+	    
 	    GameObject s = gameObjectList.get(highlighted);
-	    s.setVelocity(s.getVelocity()+1);
+	    s.setVelocity(s.getVelocity());
+	    s.setHighlighted(true);
+	    
 	  }
 
 }

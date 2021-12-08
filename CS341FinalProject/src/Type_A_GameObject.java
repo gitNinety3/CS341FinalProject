@@ -7,9 +7,10 @@ import javax.swing.ImageIcon;
 
 public class Type_A_GameObject extends GameObject implements KeyListener {
 
+	// CONSTRUCTOR
 	public Type_A_GameObject(int x, int y) {
 		super(x, y);
-		setDirection(Direction.UP);
+		setDirection(Direction.NONE);
 
 		imageList = new LinkedList<Icon>();
 		imageList.add(new ImageIcon("src/images/Type_A_Up.png"));
@@ -18,50 +19,45 @@ public class Type_A_GameObject extends GameObject implements KeyListener {
 	}
 
 	public void move(Canvas c) {
-		/*
 		Icon icon = getCurrentImage();
 
 		int iconHeight = icon.getIconHeight();
 		int canvasHeight = (int) c.getSize().getHeight();
 
-		// MOVE BLUE GAME OBJECT
-		switch (getDirection()) {
-		case Direction.UP:
-			setY(getY() - getVelocity());
-			if (getY() < 0) {
-				setY(0);
-			}
-			break;
-		case Direction.DOWN:
-			setY(getY() + getVelocity());
-			if (getY() + iconHeight > canvasHeight) {
-				setY((int) (canvasHeight - iconHeight));
-			}
-			break;
-		default:
-			break;
-		}
-		*/
+		if (getHighlighted()) {
+			switch (getDirection()) {
+			case Direction.UP:
+				setY(getY() - getVelocity());
+				if (getY() < 0) {
+					setY(0);
+					setDirection(Direction.DOWN);
+				}
+				break;
+			
+			case Direction.DOWN:
+				setY(getY() + getVelocity());
+				if (getY() + iconHeight > canvasHeight) {
+					setY((int) (canvasHeight - iconHeight));
+					setDirection(Direction.UP);
+				}
+				break;
 
-	}
-
-	public void automatic(Canvas c) {
-		
-		Icon icon = getCurrentImage();
-		int iconHeight = icon.getIconHeight();
-
-		// HEIGHT
-		if (getDirection() == Direction.DOWN) {
-			setY(getY() + getVelocity());
-			if (getY() + iconHeight > c.getSize().getWidth()) {
-				setY((int) (c.getSize().getWidth() - iconHeight));
-				setDirection(Direction.UP);
+			default:
+				break;
 			}
 		} else {
-			setY(getY() - getVelocity());
-			if (getY() < 0) {
-				setY(0);
-				setDirection(Direction.DOWN);
+			
+			if (getDirection() == Direction.DOWN) {
+				setY(getY() + getVelocity());
+				if (getY() + iconHeight > c.getSize().getWidth()) {
+					setDirection(Direction.UP);
+				}
+			} else {
+				setY(getY() - getVelocity());
+				if (getY() < 0) {
+					setY(0);
+					setDirection(Direction.DOWN);
+				}
 			}
 		}
 	}
@@ -80,29 +76,30 @@ public class Type_A_GameObject extends GameObject implements KeyListener {
 			break;
 		}
 	}
-	
+
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() != KeyEvent.VK_TAB) {
-			setDirection(Direction.NONE);
+		if (getHighlighted()) {
+			if (e.getKeyCode() != KeyEvent.VK_TAB) {
+				setDirection(Direction.NONE);
+			}
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			setDirection(Direction.UP);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			setDirection(Direction.DOWN);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			setDirection(Direction.LEFT);
-		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			setDirection(Direction.RIGHT);
+		if (getHighlighted()) {
+			if (e.getKeyCode() == KeyEvent.VK_TAB) {
+				setDirection(Direction.NONE);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				setDirection(Direction.UP);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				setDirection(Direction.DOWN);
+			}
 		}
 	}
 
