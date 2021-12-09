@@ -33,7 +33,6 @@ public class Type_A_GameObject extends GameObject implements KeyListener {
 					setDirection(Direction.DOWN);
 				}
 				break;
-			
 			case Direction.DOWN:
 				setY(getY() + getVelocity());
 				if (getY() + iconHeight > canvasHeight) {
@@ -46,7 +45,6 @@ public class Type_A_GameObject extends GameObject implements KeyListener {
 				break;
 			}
 		} else {
-			
 			if (getDirection() == Direction.DOWN) {
 				setY(getY() + getVelocity());
 				if (getY() + iconHeight > c.getSize().getWidth()) {

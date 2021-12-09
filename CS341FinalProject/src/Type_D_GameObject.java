@@ -109,7 +109,7 @@ public class Type_D_GameObject extends GameObject implements KeyListener {
 				setDirection(Direction.DOWN);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				setDirection(Direction.RIGHT);
+				setDirection(Direction.LEFT);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				setDirection(Direction.RIGHT);
