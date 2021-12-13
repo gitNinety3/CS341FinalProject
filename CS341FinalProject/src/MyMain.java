@@ -16,7 +16,7 @@ public class MyMain {
 		B.setVelocity(5);
 		canvas.addKeyListener(B);
 		canvas.addGameObject(B);
-		
+	
 		Type_C_GameObject C = new Type_C_GameObject(400, 400);
 		C.setVelocity(5);
 		canvas.addKeyListener(C);

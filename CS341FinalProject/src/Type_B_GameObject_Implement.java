@@ -5,13 +5,14 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class Type_B_GameObject_Implement extends GameObject implements Type_B_GameObject_Adapter, KeyListener {
+public class Type_B_GameObject_Implement extends Type_B_GameObject_Adapter implements  KeyListener {
 
 	GameObject gameObject;
 
 	// CONSTRUCTOR
-	public Type_B_GameObject_Implement(int x, int y) {
-		super(x, y);
+	public Type_B_GameObject_Implement(GameObject gameObject) {
+		super(gameObject);
+		gObject = gameObject;
 		setDirection(Direction.NONE);
 
 		imageList = new LinkedList<Icon>();

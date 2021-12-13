@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class Canvas extends JComponent implements ActionListener, KeyListener {
@@ -19,6 +20,7 @@ public class Canvas extends JComponent implements ActionListener, KeyListener {
 	private Timer gameLoopTimer;
 	private List<GameObject> gameObjectList;
 	private int highlighted = 0;
+	private JLabel highlightedLabel;
 
 	// CONSTRUCTOR
 	public Canvas() {
